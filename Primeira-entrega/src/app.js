@@ -74,6 +74,44 @@ app.post("/products", async (req, res) => {
   }
 });
 
+app.put("/products/:id", async (req, res) => {
+  try {
+    products = await pM.getProducts();
+    const { title, description, price, thumbnail, stock, code } = req.body;
+    const { id } = req.params;
+    const productIndex = products.findIndex(
+      (product) => product.id === parseInt(id)
+    );
+    if (productIndex === -1) {
+      return res.status(404).json({ message: "Produto não encontrado." });
+    }
+    const updatedProduct = {
+      id: parseInt(id),
+      title,
+      description,
+      price,
+      thumbnail,
+      stock,
+      code,
+    };
+    if (pM.validateProductUpdating(updatedProduct, parseInt(id))) {
+      products = await pM.getProducts();
+      products[productIndex] = updatedProduct;
+      await pM.saveProductsToFile(products);
+      return res.status(200).json(updatedProduct);
+    } else {
+      return res
+        .status(400)
+        .json({ message: "Alteração de produto rejeitada. Dados inválidos." });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ message: "Erro na requisição de alteração de produto." });
+  }
+});
+
 // app.get("/products/search", (req, res) => {
 //   const { title, description, price, thumbnail, stock, code } = req.query;
 //   let filteredProducts = products;
