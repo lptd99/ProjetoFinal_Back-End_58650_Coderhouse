@@ -3,6 +3,9 @@ const express = require("express");
 const ProductManager = require("./productManagerFS.js");
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const pMProductsPath = "./src/products.json";
 const pMCartsPath = "./src/carts.json";
 const pM = new ProductManager(pMProductsPath);
