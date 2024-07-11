@@ -11,6 +11,14 @@ const pMCartsPath = "./src/carts.json";
 const pM = new ProductManager(pMProductsPath);
 let products = [];
 
+// app.use((req, res, next) => {
+//   console.log("Request Method:", req.method);
+//   console.log("Request URL:", req.url);
+//   console.log("Request Headers:", req.headers);
+//   console.log("Request Body:", req.body);
+//   next();
+// });
+
 app.get("/products", async (req, res) => {
   products = await pM.getProducts();
   let { limit } = req.query;
