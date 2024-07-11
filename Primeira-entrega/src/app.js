@@ -112,6 +112,26 @@ app.put("/products/:id", async (req, res) => {
   }
 });
 
+app.delete("/products/:id", async (req, res) => {
+  try {
+    products = await pM.getProducts();
+    const currentLength = products.length;
+    const { id } = req.params;
+    products = products.filter((product) => product.id !== parseInt(id));
+
+    if (products.length === currentLength) {
+      return res.status(404).json({ message: "Produto não encontrado." });
+    } else {
+      await pM.saveProductsToFile(products);
+      return res.status(200).json({ message: "Produto removido com sucesso!" });
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Erro na requisição de remoção de Produto." });
+  }
+});
+
 // app.get("/products/search", (req, res) => {
 //   const { title, description, price, thumbnail, stock, code } = req.query;
 //   let filteredProducts = products;
