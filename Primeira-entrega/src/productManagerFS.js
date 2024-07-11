@@ -101,6 +101,24 @@ class ProductManager {
     d(`Validating Product of id ${product.id} ... ${result ? "OK" : "ERROR"}`);
     return result;
   }
+  validateProductUpdating(product, id) {
+    const products = this.#products;
+    console.log("ID:", id);
+    console.log("Products:", products);
+    const productsUnchanged = products.filter((product) => product.id !== id);
+    console.log("Products Unchanged:", productsUnchanged);
+    this.#products = productsUnchanged;
+    const result =
+      this.validateTitle(product.title) &&
+      this.validateDescription(product.description) &&
+      this.validatePrice(product.price) &&
+      this.validateThumbnail(product.thumbnail) &&
+      this.validateStock(product.stock) &&
+      this.validateCode(product.code);
+    d(`Validating Product of id ${product.id} ... ${result ? "OK" : "ERROR"}`);
+    this.products = products;
+    return result;
+  }
 
   addProduct = async (title, description, price, thumbnail, stock, code) => {
     try {
