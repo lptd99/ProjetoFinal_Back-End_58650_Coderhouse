@@ -42,6 +42,38 @@ app.get("/products/:id", async (req, res) => {
   }
 });
 
+app.post("/products", async (req, res) => {
+  try {
+    const { title, description, price, thumbnail, stock, code } = req.body;
+    products = await pM.getProducts();
+    const nextId = products[products.length - 1].id + 1;
+    const productToAdd = {
+      id: nextId,
+      title: title,
+      description: description,
+      price: price,
+      thumbnail: thumbnail,
+      stock: stock,
+      code: code,
+    };
+
+    if (pM.validateProduct(productToAdd)) {
+      products.push(productToAdd);
+      await pM.saveProductsToFile(products);
+      return res.status(201).json(productToAdd);
+    } else {
+      return res
+        .status(400)
+        .json({ message: "Adição de produto rejeitada. Dados inválidos." });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Erro na requisição de adição de produto.",
+    });
+  }
+});
+
 // app.get("/products/search", (req, res) => {
 //   const { title, description, price, thumbnail, stock, code } = req.query;
 //   let filteredProducts = products;
