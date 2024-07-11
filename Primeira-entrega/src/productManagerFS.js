@@ -31,8 +31,11 @@ class ProductManager {
     }
   };
 
-  saveProductsToFile = async () => {
+  saveProductsToFile = async (products) => {
     try {
+      if (products) {
+        this.#products = products;
+      }
       d("Saving products to file...");
       d("Products:", this.#products);
       const dataToSave = JSON.stringify(this.#products, null, 2);
