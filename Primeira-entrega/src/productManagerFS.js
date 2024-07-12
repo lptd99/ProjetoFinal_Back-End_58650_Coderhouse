@@ -68,10 +68,16 @@ class ProductManager {
     return result;
   }
 
-  validateThumbnail(thumbnail) {
+  validateStatus(status) {
+    const result = status === true || status === false;
+    d(`Validating Status ${status} ... ${result ? "OK" : "ERROR"}`);
+    return result;
+  }
+
+  validateCategory(category) {
     const result =
-      thumbnail && thumbnail !== null && thumbnail.trim().length > 0;
-    d(`Validating Thumbnail "${thumbnail}" ... ${result ? "OK" : "ERROR"}`);
+      category !== null && category !== undefined && category !== "";
+    d(`Validating Category ${category} ... ${result ? "OK" : "ERROR"}`);
     return result;
   }
 
@@ -95,8 +101,9 @@ class ProductManager {
       this.validateTitle(product.title) &&
       this.validateDescription(product.description) &&
       this.validatePrice(product.price) &&
-      this.validateThumbnail(product.thumbnail) &&
       this.validateStock(product.stock) &&
+this.validateStatus(product.status) &&
+      this.validateCategory(product.category) &&
       this.validateCode(product.code);
     d(`Validating Product of id ${product.id} ... ${result ? "OK" : "ERROR"}`);
     return result;
@@ -112,7 +119,8 @@ class ProductManager {
       this.validateTitle(product.title) &&
       this.validateDescription(product.description) &&
       this.validatePrice(product.price) &&
-      this.validateThumbnail(product.thumbnail) &&
+      this.validateStatus(product.status) &&
+      this.validateCategory(product.category) &&
       this.validateStock(product.stock) &&
       this.validateCode(product.code);
     d(`Validating Product of id ${product.id} ... ${result ? "OK" : "ERROR"}`);
@@ -120,7 +128,16 @@ class ProductManager {
     return result;
   }
 
-  addProduct = async (title, description, price, thumbnail, stock, code) => {
+  addProduct = async (
+    title,
+    description,
+    code,
+    price,
+    status,
+    stock,
+    category,
+    thumbnails
+  ) => {
     try {
       await this.loadProductsFromFile();
       const id = this.#lastProductId + 1;
@@ -128,17 +145,19 @@ class ProductManager {
         id: id,
         title: title,
         description: description,
-        price: price,
-        thumbnail: thumbnail,
-        stock: stock,
         code: code,
+        price: price,
+        status: status || true,
+        stock: stock,
+        category: category,
+        thumbnails: thumbnails || [],
       };
       d(`Adding product:
       id: ${id},
       title: "${title}",
       description: "${description}",
       price: ${price},
-      thumbnail: "${thumbnail}",
+      thumbnails: "${thumbnails}",
       stock: ${stock},
       code: '${code}'`);
       if (this.validateProduct(product)) {
@@ -299,7 +318,7 @@ const generateRandomProduct = (min, max) => {
     title: `Produto ${n}`,
     description: `Descrição ${n}`,
     price: n,
-    thumbnail: `thumb/${n}`,
+    thumbnails: `thumb/${n}`,
     stock: n,
     code: `SKU72${n}`,
   };
@@ -313,7 +332,7 @@ const addRandomProducts = async (pM, quantity, min, max) => {
         product.title,
         product.description,
         product.price,
-        product.thumbnail,
+        product.thumbnails,
         product.stock,
         product.code
       );
