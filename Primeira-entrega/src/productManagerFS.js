@@ -102,7 +102,7 @@ class ProductManager {
       this.validateDescription(product.description) &&
       this.validatePrice(product.price) &&
       this.validateStock(product.stock) &&
-this.validateStatus(product.status) &&
+      this.validateStatus(product.status) &&
       this.validateCategory(product.category) &&
       this.validateCode(product.code);
     d(`Validating Product of id ${product.id} ... ${result ? "OK" : "ERROR"}`);
