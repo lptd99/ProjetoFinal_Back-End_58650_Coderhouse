@@ -1,0 +1,115 @@
+[
+  {
+    "id": 2,
+    "title": "Produto 3",
+    "description": "Descrição 3",
+    "price": 3,
+    "thumbnail": "thumb/3",
+    "stock": 3,
+    "code": "SKU723"
+  },
+  {
+    "id": 65,
+    "title": "Produto 78",
+    "description": "Descrição 78",
+    "price": 78,
+    "thumbnail": "thumb/78",
+    "stock": 78,
+    "code": "SKU7278"
+  },
+  {
+    "id": 66,
+    "title": "Produto 98",
+    "description": "Descrição 98",
+    "price": 98,
+    "thumbnail": "thumb/98",
+    "stock": 98,
+    "code": "SKU7298"
+  },
+  {
+    "id": 67,
+    "title": "Produto 45",
+    "description": "Descrição 45",
+    "price": 45,
+    "thumbnail": "thumb/45",
+    "stock": 45,
+    "code": "SKU7245"
+  },
+  {
+    "id": 68,
+    "title": "Titulo 197",
+    "description": "Descricao 197",
+    "price": 197.97,
+    "thumbnail": "prod197.png",
+    "stock": 197,
+    "code": "SKU791197"
+  },
+  {
+    "id": 71,
+    "title": "Titulo 197u",
+    "description": "Descricao 197u",
+    "price": 197,
+    "thumbnail": "prod197u.png",
+    "stock": 190,
+    "code": "SKU7911979"
+  },
+  {
+    "id": 72,
+    "title": "Titulo 197",
+    "description": "Descricao 197",
+    "price": 197.97,
+    "thumbnail": "prod197.png",
+    "stock": 197,
+    "code": "SKU7911901"
+  },
+  {
+    "id": 73,
+    "title": "Titulo 197",
+    "description": "Descricao 197",
+    "price": 197.97,
+    "stock": 197,
+    "code": "SKU791190112",
+    "status": true,
+    "category": "esporte"
+  },
+  {
+    "id": 74,
+    "title": "Titulo 197",
+    "description": "Descricao 197",
+    "price": 197.97,
+    "stock": 197,
+    "code": "SKU791190122",
+    "status": true,
+    "category": "esporte"
+  },
+  {
+    "id": 75,
+    "title": "Titulo 197",
+    "description": "Descricao 197",
+    "price": 197.97,
+    "stock": 197,
+    "code": "SKU79119012",
+    "status": true,
+    "category": "esportes"
+  },
+  {
+    "id": 76,
+    "title": "Titulo 197",
+    "description": "Descricao 197",
+    "price": 197.97,
+    "stock": 197,
+    "code": "SKU79119012332",
+    "status": true,
+    "category": "esportes"
+  },
+  {
+    "id": 77,
+    "title": "Titulo 197u",
+    "description": "Descricao 197u",
+    "price": 197,
+    "stock": 190,
+    "code": "SKU79119788",
+    "status": false,
+    "category": "vestimenta"
+  }
+]
